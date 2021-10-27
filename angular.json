@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "cargo-app"
+  "defaultProject": "cargo-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
