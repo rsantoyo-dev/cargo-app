@@ -4,9 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store';
+
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import {GeolocationModule} from "./geolocation/geolocation.module";
+import {EffectsModule} from "@ngrx/effects";
+import {geolocationReducer} from "./store/geolocation/geolocation.reducer";
+import {GeolocationEffects} from "./store/geolocation/geolocation.effects";
 
 @NgModule({
   declarations: [
@@ -15,9 +19,10 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    StoreModule.forRoot({geolocation:geolocationReducer}, {}),
+    EffectsModule.forRoot([GeolocationEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    GeolocationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
