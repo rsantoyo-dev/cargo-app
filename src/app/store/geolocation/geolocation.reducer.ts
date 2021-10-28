@@ -24,8 +24,7 @@ export const _geolocationReducer = createReducer<GeolocationState>(
     return {...state, data:action.data}
   }),
 
-  //on(GeolocationActions.loadGeolocationsSuccess, (state, action) => state),
-  on(GeolocationActions.loadGeolocationsFailure, (state, action) => state),
+  on(GeolocationActions.loadGeolocationsFailure, (state) => state),
 
 );
 

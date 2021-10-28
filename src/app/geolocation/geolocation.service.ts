@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
-import {error} from "@angular/compiler/src/util";
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class GeolocationService {
   constructor(private http: HttpClient) { }
 
   /*getPlaces(): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL)
+    return this.http.get<any>(this.apiURL)
       .pipe(
         tap(data => JSON.stringify(data)),
         catchError(error)
