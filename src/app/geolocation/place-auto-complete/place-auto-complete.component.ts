@@ -7,11 +7,15 @@ import PlaceResult = google.maps.places.PlaceResult;
   styleUrls: ['./place-auto-complete.component.scss']
 })
 export class PlaceAutoCompleteComponent implements AfterViewInit {
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
 
-  @Output() placeChanged: EventEmitter<PlaceResult> = new EventEmitter<PlaceResult>();
+  @ViewChild('input')
+  input: ElementRef<HTMLInputElement>;
+
+  @Output()
+  placeChanged: EventEmitter<PlaceResult> = new EventEmitter<PlaceResult>();
 
   autoComplete: google.maps.places.Autocomplete;
+
   constructor() { }
 
   ngAfterViewInit(): void{
@@ -22,8 +26,7 @@ export class PlaceAutoCompleteComponent implements AfterViewInit {
   private initAutoComplete(input: HTMLInputElement): void {
     this.autoComplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(this.autoComplete, 'place_changed', () => {
-      console.log(this.autoComplete.getPlace())
-      //this.placeChanged.emit(this.autoComplete.getPlace());
+      this.placeChanged.emit(this.autoComplete.getPlace());
     });
   }
 
