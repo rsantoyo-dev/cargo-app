@@ -7,14 +7,13 @@ export const geolocationFeatureKey = 'geolocation';
 export interface GeolocationState {
   value: number;
   data: any;
-  placeResult?: PlaceResult | null;
+  placeResult: Array<PlaceResult>;
 }
 
 export const initialState: GeolocationState = {
   value: 5,
   data: {},
-  placeResult: null
-
+  placeResult: []
 };
 
 
@@ -30,7 +29,7 @@ export const _geolocationReducer = createReducer<GeolocationState>(
   on(GeolocationActions.loadGeolocationsFailure, (state) => state),
 
   on(GeolocationActions.setPlaceResult, (state, action): GeolocationState => {
-    return {...state, placeResult: action.placeResult}
+    return {...state, placeResult: [...state.placeResult, action.placeResult]}
   }),
 );
 
