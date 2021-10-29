@@ -11,7 +11,7 @@ export class GeolocationService {
 
   constructor(private http: HttpClient) { }
 
-  /*getPlaces(): Observable<any> {
+ /* getPlaces(): Observable<any> {
     return this.http.get<any>(this.apiURL)
       .pipe(
         tap(data => JSON.stringify(data)),
