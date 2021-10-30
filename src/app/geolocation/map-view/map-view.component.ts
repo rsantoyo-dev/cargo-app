@@ -11,14 +11,29 @@ export class MapViewComponent implements AfterViewInit {
 
   map: google.maps.Map;
 
+  lat = 12.9716;
+  lng = 77.5946;
 
-  constructor() { }
+  coordinates:google.maps.LatLng = new google.maps.LatLng(this.lat, this.lng);
+
+  marker: google.maps.Marker ;
+
+
+  constructor() {
+
+  }
   ngAfterViewInit(): void{
-    new google.maps.Map(this.mapContainer.nativeElement, {
+    this.map = new google.maps.Map(this.mapContainer.nativeElement, {
       zoom: 10,
-      center: new google.maps.LatLng(-33.92, 151.25),
+      center: this.coordinates,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     })
+
+    this.marker = new google.maps.Marker({
+      position: this.coordinates,
+      map: this.map,
+    });
+
   }
 
   ngOnInit(): void {
