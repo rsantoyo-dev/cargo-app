@@ -1,6 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 import * as GeolocationActions from './geolocation.actions';
 import PlaceResult = google.maps.places.PlaceResult;
+import Marker = google.maps.Marker;
 
 export const geolocationFeatureKey = 'geolocation';
 
@@ -8,12 +9,14 @@ export interface GeolocationState {
   value: number;
   data: any;
   placesResults: Array<PlaceResult>;
+  markers: Array<Marker>;
 }
 
 export const initialState: GeolocationState = {
   value: 5,
   data: {},
-  placesResults: [{name:''},{name:''}]
+  placesResults: [{name: ''}, {name: ''}],
+  markers: [new google.maps.Marker({position: {lat: 46, lng: 23}})]
 };
 
 
@@ -29,7 +32,9 @@ export const _geolocationReducer = createReducer<GeolocationState>(
   on(GeolocationActions.loadGeolocationsFailure, (state) => state),
 
   on(GeolocationActions.updatePlaceByIndex, (state, action): GeolocationState => {
-    return {...state, placesResults: state.placesResults.map((x,i)=>i===action.index ? action.placeResult : x)}
+    return {
+      ...state, placesResults: state.placesResults.map((x, i) => i === action.index ? action.placeResult : x),
+    }
   }),
 );
 

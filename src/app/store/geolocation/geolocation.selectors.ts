@@ -6,3 +6,5 @@ export const selectGeolocationState = createFeatureSelector<fromGeolocation.Geol
 );
 export const getValue = createSelector(selectGeolocationState, state => (state ? state.value : null));
 export const getPlacesResults = createSelector(selectGeolocationState, state => (state ? state.placesResults : null));
+export const getMarkers = createSelector(selectGeolocationState, state => (state ? state.markers : null));
+
