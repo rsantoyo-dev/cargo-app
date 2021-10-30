@@ -13,62 +13,55 @@ import Marker = google.maps.Marker;
 })
 export class MapViewComponent implements AfterViewInit {
   @ViewChild('mapContainer', {static: false})
-  mapContainer:  ElementRef<HTMLElement>;
+  mapContainer: ElementRef<HTMLElement>;
 
-  placesResults$: Observable<Array<PlaceResult>|null>;
+  placesResults$: Observable<Array<PlaceResult> | null>;
 
   map: google.maps.Map;
 
-  lat = 12.9716;
-  lng = 77.5946;
+  coordinates: google.maps.LatLng = new google.maps.LatLng(0,0 );
 
-  coordinates:google.maps.LatLng = new google.maps.LatLng(this.lat, this.lng);
+  marker: google.maps.Marker;
 
-  marker: google.maps.Marker ;
-
-  markers: Array<Marker> =[]
-
+  markers: Array<Marker> = [];
 
   constructor(private store: Store<GeolocationState>) {
 
     this.placesResults$ = this.store.select(getPlacesResults);
 
-    this.placesResults$.subscribe(places=>{
-      console.log('place')
-
-        places?.forEach((place, i)=>{
-
-          console.log(place.geometry?.location?.lat())
-           this.marker = new google.maps.Marker({
-             position: place.geometry?.location,
-             map: this.map,
-           });
-          if (i===0){
-            this.map?.setCenter( place.geometry?.location ?  place.geometry?.location : this.coordinates)
+    this.placesResults$.subscribe(places => {
+      places?.forEach((place, i) => {
+          this.markers[i] = new google.maps.Marker({
+            position: place.geometry?.location,
+            map: this.map,
+          })
+          if (i === 0) {
+            this.map?.setCenter(place.geometry?.location ? place.geometry?.location : this.coordinates)
           }
-
-        })
-
-
+        }
+      )
     })
   }
-  ngAfterViewInit(): void{
+
+  ngAfterViewInit(): void {
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((pos:GeolocationPosition)=>{
+        this.coordinates = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        this.centerMap()
+      });
+    }
+    else{
+      this.centerMap()
+    }
+  }
+
+  centerMap(){
     this.map = new google.maps.Map(this.mapContainer.nativeElement, {
       zoom: 10,
       center: this.coordinates,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     })
-
-
-   /* this.marker = new google.maps.Marker({
-      position: this.coordinates,
-      map: this.map,
-    });*/
-
   }
 
-  ngOnInit(): void {
-
-  }
 
 }
