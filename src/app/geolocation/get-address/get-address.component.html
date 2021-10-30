@@ -26,3 +26,8 @@
 </google-map>-->
 
 <app-map-view></app-map-view>
+
+<div *ngFor="let placeResult of placesResults$ | async; index as i">
+  <div>{{i}}</div>
+  {{placeResult.geometry?.location}}
+</div>

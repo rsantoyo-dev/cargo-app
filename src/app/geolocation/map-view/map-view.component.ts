@@ -1,4 +1,10 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {Observable} from "rxjs";
+import PlaceResult = google.maps.places.PlaceResult;
+import {getPlacesResults} from "../../store/geolocation/geolocation.selectors";
+import {Store} from "@ngrx/store";
+import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
+import Marker = google.maps.Marker;
 
 @Component({
   selector: 'app-map-view',
@@ -9,6 +15,8 @@ export class MapViewComponent implements AfterViewInit {
   @ViewChild('mapContainer', {static: false})
   mapContainer:  ElementRef<HTMLElement>;
 
+  placesResults$: Observable<Array<PlaceResult>|null>;
+
   map: google.maps.Map;
 
   lat = 12.9716;
@@ -18,9 +26,31 @@ export class MapViewComponent implements AfterViewInit {
 
   marker: google.maps.Marker ;
 
+  markers: Array<Marker> =[]
 
-  constructor() {
 
+  constructor(private store: Store<GeolocationState>) {
+
+    this.placesResults$ = this.store.select(getPlacesResults);
+
+    this.placesResults$.subscribe(places=>{
+      console.log('place')
+
+        places?.forEach((place, i)=>{
+
+          console.log(place.geometry?.location?.lat())
+           this.marker = new google.maps.Marker({
+             position: place.geometry?.location,
+             map: this.map,
+           });
+          if (i===0){
+            this.map?.setCenter( place.geometry?.location ?  place.geometry?.location : this.coordinates)
+          }
+
+        })
+
+
+    })
   }
   ngAfterViewInit(): void{
     this.map = new google.maps.Map(this.mapContainer.nativeElement, {
@@ -29,10 +59,11 @@ export class MapViewComponent implements AfterViewInit {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     })
 
-    this.marker = new google.maps.Marker({
+
+   /* this.marker = new google.maps.Marker({
       position: this.coordinates,
       map: this.map,
-    });
+    });*/
 
   }
 
