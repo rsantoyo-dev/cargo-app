@@ -2,10 +2,9 @@ import {AfterViewInit, Component} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
 import {Observable} from "rxjs";
-import {getValue} from "../../store/geolocation/geolocation.selectors";
-import {setPlaceResult} from "../../store/geolocation/geolocation.actions";
+import {getPlacesResults, getValue} from "../../store/geolocation/geolocation.selectors";
+import {updatePlaceByIndex} from "../../store/geolocation/geolocation.actions";
 import PlaceResult = google.maps.places.PlaceResult;
-
 
 
 @Component({
@@ -13,21 +12,25 @@ import PlaceResult = google.maps.places.PlaceResult;
   templateUrl: './get-address.component.html',
   styleUrls: ['./get-address.component.scss']
 })
-export class GetAddressComponent implements AfterViewInit{
+export class GetAddressComponent implements AfterViewInit {
 
-  value$: Observable<number|null>;
+  value$: Observable<number | null>;
+  placesResults$: Observable<Array<PlaceResult> | null>;
 
   constructor(private store: Store<GeolocationState>) {
     this.value$ = this.store.select(getValue);
+    this.placesResults$ = this.store.select(getPlacesResults);
   }
 
-  ngAfterViewInit(): void{
-   // this.store.dispatch(loadGeolocations())
+  ngAfterViewInit(): void {
+    // this.store.dispatch(loadGeolocations())
   }
 
-  placeChanged(placeResult: PlaceResult) {
-
-    this.store.dispatch(setPlaceResult({placeResult}))
+  departureAddress(placeResult: PlaceResult) {
+    this.store.dispatch(updatePlaceByIndex({placeResult, index:0}))
+  }
+  arrivalAddress(placeResult: PlaceResult) {
+    this.store.dispatch(updatePlaceByIndex({placeResult, index:1}))
   }
 
 }

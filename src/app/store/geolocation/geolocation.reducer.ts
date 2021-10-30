@@ -7,13 +7,13 @@ export const geolocationFeatureKey = 'geolocation';
 export interface GeolocationState {
   value: number;
   data: any;
-  placeResult: Array<PlaceResult>;
+  placesResults: Array<PlaceResult>;
 }
 
 export const initialState: GeolocationState = {
   value: 5,
   data: {},
-  placeResult: []
+  placesResults: [{name:''},{name:''}]
 };
 
 
@@ -28,8 +28,8 @@ export const _geolocationReducer = createReducer<GeolocationState>(
 
   on(GeolocationActions.loadGeolocationsFailure, (state) => state),
 
-  on(GeolocationActions.setPlaceResult, (state, action): GeolocationState => {
-    return {...state, placeResult: [...state.placeResult, action.placeResult]}
+  on(GeolocationActions.updatePlaceByIndex, (state, action): GeolocationState => {
+    return {...state, placesResults: state.placesResults.map((x,i)=>i===action.index ? action.placeResult : x)}
   }),
 );
 

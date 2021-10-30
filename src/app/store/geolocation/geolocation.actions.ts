@@ -17,8 +17,8 @@ export const loadGeolocationsFailure = createAction(
 );
 
 //PAGE ACTIONS
-export const setPlaceResult = createAction(
+export const updatePlaceByIndex = createAction(
   '[Geolocation] Add Address',
-    props<{ placeResult: PlaceResult }>()
+    props<{ placeResult: PlaceResult, index:number }>()
 );
 

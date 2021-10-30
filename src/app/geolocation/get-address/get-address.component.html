@@ -1,4 +1,14 @@
-<app-place-auto-complete (placeChanged)="placeChanged($event)"></app-place-auto-complete>
 
-{{value$ | async}}
+<!--{{value$ | async}}-->
 
+<!--<div *ngFor="let placeResult of placesResults$ | async; index as i">
+  <div>{{i}}</div>
+  <app-place-auto-complete (placeChanged)="placeChanged($event)" defaultPlace={{placeResult.formatted_address}}></app-place-auto-complete>
+</div>
+
+<div>
+  >
+</div>-->
+
+<app-place-auto-complete (placeChanged)="departureAddress($event)" defaultPlace=""></app-place-auto-complete>
+<app-place-auto-complete (placeChanged)="arrivalAddress($event)" defaultPlace=""></app-place-auto-complete>
