@@ -42,24 +42,25 @@ export class MapViewComponent implements AfterViewInit {
     if (places){
       const request:DirectionsRequest={
         origin: {query: places[0].formatted_address},
-
         destination:{query: places[1].formatted_address},
-
         travelMode: google.maps.TravelMode.DRIVING,
       }
+      console.log(request?.origin)
       this.directionsService.route(request, (response, status)=>{
-        console.log(response)
+        console.log('-----------------------')
         if (status == 'OK') {
           this.directionsRenderer.setDirections(response);
         }
+
       })
     }
 
 
   }
 
-  showMarkers(){
+  showMapInfo(){
     this.placesResults$.subscribe(places => {
+      let hasDirection=true;
       places?.forEach((place, i) => {
           this.markers[i] = new google.maps.Marker({
             position: place.geometry?.location,
@@ -68,9 +69,12 @@ export class MapViewComponent implements AfterViewInit {
           if (i === 0) {
             this.map?.setCenter(place.geometry?.location ? place.geometry?.location : this.coordinates)
           }
+          hasDirection = !(hasDirection && (place.name===''))
+
         }
       )
-      this.getDirections(places)
+      if(hasDirection) this.getDirections(places)
+
     })
   }
 
@@ -93,7 +97,7 @@ export class MapViewComponent implements AfterViewInit {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     })
     this.directionsRenderer.setMap(this.map);
-    this.showMarkers()
+    this.showMapInfo()
   }
 
 
