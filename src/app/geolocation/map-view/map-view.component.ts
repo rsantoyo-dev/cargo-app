@@ -5,6 +5,7 @@ import {getPlacesResults} from "../../store/geolocation/geolocation.selectors";
 import {Store} from "@ngrx/store";
 import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
 import Marker = google.maps.Marker;
+import DirectionsRequest = google.maps.DirectionsRequest;
 
 @Component({
   selector: 'app-map-view',
@@ -19,6 +20,12 @@ export class MapViewComponent implements AfterViewInit {
 
   map: google.maps.Map;
 
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+
+
+
+
   coordinates: google.maps.LatLng = new google.maps.LatLng(0,0 );
 
   marker: google.maps.Marker;
@@ -29,6 +36,29 @@ export class MapViewComponent implements AfterViewInit {
 
     this.placesResults$ = this.store.select(getPlacesResults);
 
+  }
+
+  getDirections(places:Array<PlaceResult> | null){
+    if (places){
+      const request:DirectionsRequest={
+        origin: {query: places[0].formatted_address},
+
+        destination:{query: places[1].formatted_address},
+
+        travelMode: google.maps.TravelMode.DRIVING,
+      }
+      this.directionsService.route(request, (response, status)=>{
+        console.log(response)
+        if (status == 'OK') {
+          this.directionsRenderer.setDirections(response);
+        }
+      })
+    }
+
+
+  }
+
+  showMarkers(){
     this.placesResults$.subscribe(places => {
       places?.forEach((place, i) => {
           this.markers[i] = new google.maps.Marker({
@@ -40,6 +70,7 @@ export class MapViewComponent implements AfterViewInit {
           }
         }
       )
+      this.getDirections(places)
     })
   }
 
@@ -61,6 +92,8 @@ export class MapViewComponent implements AfterViewInit {
       center: this.coordinates,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     })
+    this.directionsRenderer.setMap(this.map);
+    this.showMarkers()
   }
 
 
