@@ -12,24 +12,19 @@ import PlaceResult = google.maps.places.PlaceResult;
   templateUrl: './get-address.component.html',
   styleUrls: ['./get-address.component.scss']
 })
+//this class gets the 2 addresses and update info to redux
 export class GetAddressComponent implements AfterViewInit {
-
 
   placesResults$: Observable<Array<PlaceResult> | null>;
 
   directionsRenderer: any;
 
   constructor(private store: Store<GeolocationState>) {
-
     this.placesResults$ = this.store.select(getPlacesResults);
-
   }
 
   ngAfterViewInit(): void {
-    // this.store.dispatch(loadGeolocations())
     this.directionsRenderer = new google.maps.DirectionsRenderer();
-
-
   }
 
   departureAddress(placeResult: PlaceResult) {
