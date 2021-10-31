@@ -6,6 +6,7 @@ import {Store} from "@ngrx/store";
 import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
 import Marker = google.maps.Marker;
 import DirectionsRequest = google.maps.DirectionsRequest;
+import {setRouteDistance} from "../../store/geolocation/geolocation.actions";
 
 @Component({
   selector: 'app-map-view',
@@ -35,18 +36,19 @@ export class MapViewComponent implements AfterViewInit {
 
   getDirections(places: Array<PlaceResult> | null) {
     if (places) {
+
       const request: DirectionsRequest = {
         origin: {query: places[0].formatted_address},
         destination: {query: places[1].formatted_address},
         travelMode: google.maps.TravelMode.DRIVING,
       }
-      console.log(request?.origin)
+
       this.directionsService.route(request, (response, status) => {
-        console.log('-----------------------')
+        const routeDistance = (response.routes[0].legs[0].distance)
         if (status == 'OK') {
+          this.store.dispatch(setRouteDistance({routeDistance}));
           this.directionsRenderer.setDirections(response);
         }
-
       })
     }
 

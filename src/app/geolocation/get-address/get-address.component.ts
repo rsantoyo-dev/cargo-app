@@ -2,10 +2,9 @@ import {AfterViewInit, Component} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
 import {Observable} from "rxjs";
-import {getMarkers, getPlacesResults, getValue} from "../../store/geolocation/geolocation.selectors";
+import { getPlacesResults} from "../../store/geolocation/geolocation.selectors";
 import {updatePlaceByIndex} from "../../store/geolocation/geolocation.actions";
 import PlaceResult = google.maps.places.PlaceResult;
-import Marker = google.maps.Marker;
 
 
 @Component({
@@ -15,13 +14,13 @@ import Marker = google.maps.Marker;
 })
 export class GetAddressComponent implements AfterViewInit {
 
-  value$: Observable<number | null>;
+
   placesResults$: Observable<Array<PlaceResult> | null>;
 
   directionsRenderer: any;
 
   constructor(private store: Store<GeolocationState>) {
-    this.value$ = this.store.select(getValue);
+
     this.placesResults$ = this.store.select(getPlacesResults);
 
   }
