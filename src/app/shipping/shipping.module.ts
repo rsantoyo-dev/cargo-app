@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PackageDetailsComponent } from './package-details/package-details.component';
 import { WeighDetailsComponent } from './weigh-details/weigh-details.component';
 import { ShippingSummaryComponent } from './shipping-summary/shipping-summary.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -17,8 +18,9 @@ import { ShippingSummaryComponent } from './shipping-summary/shipping-summary.co
     WeighDetailsComponent,
     ShippingSummaryComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ]
 })
 export class ShippingModule { }
