@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import PlaceResult = google.maps.places.PlaceResult;
+import Distance = google.maps.Distance;
 
 //API ACTIONS
 export const loadGeolocations = createAction(
@@ -20,5 +21,10 @@ export const loadGeolocationsFailure = createAction(
 export const updatePlaceByIndex = createAction(
   '[Geolocation] Add Address',
     props<{ placeResult: PlaceResult, index:number }>()
+);
+
+export const setRouteDistance = createAction(
+  '[Geolocation] Set Directions Route',
+  props<{ routeDistance: Distance }>()
 );
 

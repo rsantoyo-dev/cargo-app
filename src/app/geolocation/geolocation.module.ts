@@ -7,12 +7,14 @@ import {StoreModule} from "@ngrx/store";
 import {geolocationReducer} from "../store/geolocation/geolocation.reducer";
 import {HttpClientModule} from "@angular/common/http";
 import { PlaceAutoCompleteComponent } from './place-auto-complete/place-auto-complete.component';
+import {MapViewComponent} from "./map-view/map-view.component";
 
 
 @NgModule({
   declarations: [
     GetAddressComponent,
-    PlaceAutoCompleteComponent
+    PlaceAutoCompleteComponent,
+    MapViewComponent
   ],
   exports: [
     GetAddressComponent

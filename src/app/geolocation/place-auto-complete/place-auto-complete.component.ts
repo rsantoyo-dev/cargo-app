@@ -28,7 +28,7 @@ export class PlaceAutoCompleteComponent implements AfterViewInit {
   }
 
   private initAutoComplete(input: HTMLInputElement): void {
-    this.autoComplete = new google.maps.places.Autocomplete(input);
+    this.autoComplete = new google.maps.places.Autocomplete(input, {componentRestrictions: {country: "ca"}});
     google.maps.event.addListener(this.autoComplete, 'place_changed', () => {
       this.placeChanged.emit(this.autoComplete.getPlace());
      // this.input.nativeElement.value=""
