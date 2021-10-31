@@ -17,7 +17,8 @@ import {MapViewComponent} from "./map-view/map-view.component";
     MapViewComponent
   ],
   exports: [
-    GetAddressComponent
+    GetAddressComponent,
+    MapViewComponent
   ],
   imports: [
     CommonModule,
