@@ -1,1 +1,9 @@
-<p>weigh-details works! //TODO:  set details </p>
+
+<form [formGroup]="weightForm"  (ngSubmit)="onSubmit()">
+
+  <label for="length">Weight: </label>
+  <input id="length" type="number" formControlName="length">
+
+
+  <button type="submit" [disabled]="!weightForm.valid">Submit</button>
+</form>

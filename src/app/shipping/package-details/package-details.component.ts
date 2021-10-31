@@ -13,6 +13,7 @@ export class PackageDetailsComponent implements OnInit {
     width: new FormControl(0),
     height: new FormControl(0),
   });
+
   constructor() { }
 
   ngOnInit(): void {
