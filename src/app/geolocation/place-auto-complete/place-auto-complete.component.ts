@@ -23,7 +23,6 @@ export class PlaceAutoCompleteComponent implements AfterViewInit {
   ngAfterViewInit(): void{
     let inputs: HTMLInputElement = this.input.nativeElement;
     this.initAutoComplete(inputs);
-
   }
 
   private initAutoComplete(input: HTMLInputElement): void {
