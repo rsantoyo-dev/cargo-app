@@ -23,12 +23,7 @@ export class MapViewComponent implements AfterViewInit {
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
 
-
-
-
-  coordinates: google.maps.LatLng = new google.maps.LatLng(0,0 );
-
-  marker: google.maps.Marker;
+  coordinates: google.maps.LatLng = new google.maps.LatLng(0, 0);
 
   markers: Array<Marker> = [];
 
@@ -38,15 +33,15 @@ export class MapViewComponent implements AfterViewInit {
 
   }
 
-  getDirections(places:Array<PlaceResult> | null){
-    if (places){
-      const request:DirectionsRequest={
+  getDirections(places: Array<PlaceResult> | null) {
+    if (places) {
+      const request: DirectionsRequest = {
         origin: {query: places[0].formatted_address},
-        destination:{query: places[1].formatted_address},
+        destination: {query: places[1].formatted_address},
         travelMode: google.maps.TravelMode.DRIVING,
       }
       console.log(request?.origin)
-      this.directionsService.route(request, (response, status)=>{
+      this.directionsService.route(request, (response, status) => {
         console.log('-----------------------')
         if (status == 'OK') {
           this.directionsRenderer.setDirections(response);
@@ -58,9 +53,9 @@ export class MapViewComponent implements AfterViewInit {
 
   }
 
-  showMapInfo(){
+  showMapInfo() {
     this.placesResults$.subscribe(places => {
-      let hasDirection=true;
+      let hasDirection = true;
       places?.forEach((place, i) => {
           this.markers[i] = new google.maps.Marker({
             position: place.geometry?.location,
@@ -69,28 +64,26 @@ export class MapViewComponent implements AfterViewInit {
           if (i === 0) {
             this.map?.setCenter(place.geometry?.location ? place.geometry?.location : this.coordinates)
           }
-          hasDirection = !(hasDirection && (place.name===''))
-
+          hasDirection = (hasDirection && (place.name === '')) ? false : hasDirection;
         }
       )
-      if(hasDirection) this.getDirections(places)
+      if (hasDirection) this.getDirections(places)
 
     })
   }
 
   ngAfterViewInit(): void {
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((pos:GeolocationPosition)=>{
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos: GeolocationPosition) => {
         this.coordinates = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         this.centerMap()
       });
-    }
-    else{
+    } else {
       this.centerMap()
     }
   }
 
-  centerMap(){
+  centerMap() {
     this.map = new google.maps.Map(this.mapContainer.nativeElement, {
       zoom: 10,
       center: this.coordinates,
