@@ -13,6 +13,7 @@ import {geolocationReducer} from "./store/geolocation/geolocation.reducer";
 import {GeolocationEffects} from "./store/geolocation/geolocation.effects";
 import {ShippingModule} from "./shipping/shipping.module";
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,7 @@ import {ShippingModule} from "./shipping/shipping.module";
     EffectsModule.forRoot([GeolocationEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     GeolocationModule,
-    ShippingModule
+    ShippingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

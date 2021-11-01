@@ -1,8 +1,8 @@
 
 <form [formGroup]="weightForm"  (ngSubmit)="onSubmit()">
 
-  <label for="length">Weight: </label>
-  <input id="length" type="number" formControlName="length">
+  <label for="weight">Weight: </label>
+  <input id="weight" type="number" formControlName="weight">
 
 
   <button type="submit" [disabled]="!weightForm.valid">Submit</button>

@@ -8,13 +8,15 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class PackageDetailsComponent implements OnInit {
 
-  sizeForm = new FormGroup({
-    length: new FormControl(0),
-    width: new FormControl(0),
-    height: new FormControl(0),
-  });
+  sizeForm: FormGroup
 
-  constructor() { }
+  constructor() {
+    this.sizeForm= new FormGroup({
+      length: new FormControl(0),
+      width: new FormControl(0),
+      height: new FormControl(0),
+    });
+  }
 
   ngOnInit(): void {
   }

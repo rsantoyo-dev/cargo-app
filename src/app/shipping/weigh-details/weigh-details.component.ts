@@ -8,11 +8,13 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class WeighDetailsComponent implements OnInit {
 
-  weightForm = new FormGroup({
-    weight: new FormControl(0),
-  });
+  weightForm:FormGroup;
 
-  constructor() { }
+  constructor() {
+    this.weightForm = new FormGroup({
+      weight: new FormControl(0),
+    });
+  }
 
   ngOnInit(): void {
   }

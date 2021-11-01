@@ -19,6 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ShippingSummaryComponent
   ],
     imports: [
+
         CommonModule,
         ReactiveFormsModule
     ]
