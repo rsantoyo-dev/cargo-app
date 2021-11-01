@@ -9,6 +9,7 @@ import { PlaceAutoCompleteComponent } from './place-auto-complete/place-auto-com
 import {MapViewComponent} from "./map-view/map-view.component";
 
 
+
 @NgModule({
   declarations: [
     GetAddressComponent,
