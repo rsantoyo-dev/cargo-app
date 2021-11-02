@@ -9,8 +9,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import {GeolocationModule} from "./geolocation/geolocation.module";
 import {EffectsModule} from "@ngrx/effects";
-import {geolocationReducer} from "./store/geolocation/geolocation.reducer";
-import {GeolocationEffects} from "./store/geolocation/geolocation.effects";
+import {shippingReducer} from "./store/shipping/shipping.reducer";
+import {ShippingEffects} from "./store/shipping/shipping.effects";
 import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -24,8 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({geolocation: geolocationReducer}, {}),
-    EffectsModule.forRoot([GeolocationEffects]),
+    StoreModule.forRoot({shipping: shippingReducer}, {}),
+    EffectsModule.forRoot([ShippingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     GeolocationModule,
     ShippingModule,

@@ -1,9 +1,9 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
+import {ShippingState} from "../../store/shipping/shipping.reducer";
 import {Observable} from "rxjs";
-import { getPlacesResults} from "../../store/geolocation/geolocation.selectors";
-import {updatePlaceByIndex} from "../../store/geolocation/geolocation.actions";
+import { getPlacesResults} from "../../store/shipping/shipping.selectors";
+import {updatePlaceByIndex} from "../../store/shipping/shipping.actions";
 import PlaceResult = google.maps.places.PlaceResult;
 
 
@@ -19,7 +19,7 @@ export class GetAddressComponent implements AfterViewInit {
 
   directionsRenderer: any;
 
-  constructor(private store: Store<GeolocationState>) {
+  constructor(private store: Store<ShippingState>) {
     this.placesResults$ = this.store.select(getPlacesResults);
   }
 

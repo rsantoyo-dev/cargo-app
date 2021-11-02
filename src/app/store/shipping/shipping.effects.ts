@@ -4,21 +4,21 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {GeolocationService} from "../../geolocation/geolocation.service";
 
-import * as GeolocationActions from './geolocation.actions';
+import * as ShippingActions from './shipping.actions';
 
 @Injectable()
-export class GeolocationEffects {
+export class ShippingEffects {
 
 
   loadGeolocations$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GeolocationActions.loadGeolocations),
+      ofType(ShippingActions.shippinglocations),
       mergeMap(() =>
 
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.geolocationService.getPlaces().pipe(
-          map((data) => GeolocationActions.loadGeolocationsSuccess({data})),
-          catchError(error => of(GeolocationActions.loadGeolocationsFailure({error})))
+          map((data) => ShippingActions.loadShippingSuccess({data})),
+          catchError(error => of(ShippingActions.loadShippingFailure({error})))
         )
       )
     );

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
+import {ShippingState} from "../../store/shipping/shipping.reducer";
 import {Observable} from "rxjs";
 import Distance = google.maps.Distance;
-import {getRouteDistance} from "../../store/geolocation/geolocation.selectors";
-import {loadGeolocations} from "../../store/geolocation/geolocation.actions";
+import {getRouteDistance} from "../../store/shipping/shipping.selectors";
+import {shippinglocations} from "../../store/shipping/shipping.actions";
 
 @Component({
   selector: 'app-shipping-summary',
@@ -13,11 +13,11 @@ import {loadGeolocations} from "../../store/geolocation/geolocation.actions";
 })
 export class ShippingSummaryComponent implements OnInit {
   routeDistance$: Observable<Distance | null>;
-  constructor(private geoLocationStore: Store<GeolocationState>) { }
+  constructor(private geoLocationStore: Store<ShippingState>) { }
 
   ngOnInit(): void {
     this.routeDistance$ = this.geoLocationStore.select(getRouteDistance);
-    this.geoLocationStore.dispatch(loadGeolocations())
+    this.geoLocationStore.dispatch(shippinglocations())
 
   }
 

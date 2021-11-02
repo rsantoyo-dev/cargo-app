@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
-import {GeolocationEffects} from '../store/geolocation/geolocation.effects';
+import {ShippingEffects} from '../store/shipping/shipping.effects';
 import {GetAddressComponent} from './get-address/get-address.component';
 import {StoreModule} from "@ngrx/store";
-import {geolocationReducer} from "../store/geolocation/geolocation.reducer";
+import {shippingReducer} from "../store/shipping/shipping.reducer";
 import { PlaceAutoCompleteComponent } from './place-auto-complete/place-auto-complete.component';
 import {MapViewComponent} from "./map-view/map-view.component";
 
@@ -23,8 +23,8 @@ import {MapViewComponent} from "./map-view/map-view.component";
   imports: [
 
     CommonModule,
-    StoreModule.forFeature('geolocation', geolocationReducer),
-    EffectsModule.forFeature([GeolocationEffects])
+    StoreModule.forFeature('geolocation', shippingReducer),
+    EffectsModule.forFeature([ShippingEffects])
 
   ]
 })

@@ -1,14 +1,13 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
 import PlaceResult = google.maps.places.PlaceResult;
-import {getPlacesResults} from "../../store/geolocation/geolocation.selectors";
+import {getPlacesResults} from "../../store/shipping/shipping.selectors";
 import {Store} from "@ngrx/store";
-import {GeolocationState} from "../../store/geolocation/geolocation.reducer";
+import {ShippingState} from "../../store/shipping/shipping.reducer";
 import Marker = google.maps.Marker;
 import DirectionsRequest = google.maps.DirectionsRequest;
-import {setRouteDistance} from "../../store/geolocation/geolocation.actions";
-import DirectionsService = google.maps.DirectionsService;
-import DirectionsRendererOptions = google.maps.DirectionsRendererOptions;
+import {setRouteDistance} from "../../store/shipping/shipping.actions";
+
 
 @Component({
   selector: 'app-map-view',
@@ -30,7 +29,7 @@ export class MapViewComponent implements AfterViewInit {
 
   markers: Array<Marker> = [];
 
-  constructor(private store: Store<GeolocationState>) {
+  constructor(private store: Store<ShippingState>) {
     this.placesResults$ = this.store.select(getPlacesResults);
   }
 
