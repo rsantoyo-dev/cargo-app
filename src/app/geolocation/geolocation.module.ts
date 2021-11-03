@@ -23,7 +23,7 @@ import {MapViewComponent} from "./map-view/map-view.component";
   imports: [
 
     CommonModule,
-    StoreModule.forFeature('geolocation', shippingReducer),
+    StoreModule.forFeature('shipping', shippingReducer),
     EffectsModule.forFeature([ShippingEffects])
 
   ]

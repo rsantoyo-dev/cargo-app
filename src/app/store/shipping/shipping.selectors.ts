@@ -8,5 +8,10 @@ export const getPlacesResults = createSelector(selectShippingState, state => (st
 
 export const getRouteDistance = createSelector(selectShippingState, state => (state ? state.routeDistance : null));
 
+export const getLoadSize = createSelector(selectShippingState, state => (state ? state.loadSize : null));
+
+export const getWeight = createSelector(selectShippingState, state => (state ? state.weight : null));
+
+
 
 

@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import PlaceResult = google.maps.places.PlaceResult;
 import Distance = google.maps.Distance;
+import {LoadSize} from "../../shipping/model";
 
 //API ACTIONS
 export const shippinglocations = createAction(
@@ -26,5 +27,15 @@ export const updatePlaceByIndex = createAction(
 export const setRouteDistance = createAction(
   '[Shipping] Set Directions Route',
   props<{ routeDistance: Distance }>()
+);
+
+export const setLoadSize = createAction(
+  '[Shipping] Set Directions Route',
+  props<{ loadSize: LoadSize }>()
+);
+
+export const setWeight = createAction(
+  '[Shipping] Set Directions Route',
+  props<{ weight: number }>()
 );
 

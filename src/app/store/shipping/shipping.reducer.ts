@@ -2,21 +2,27 @@ import {createReducer, on} from '@ngrx/store';
 import * as ShippingActions from './shipping.actions';
 import PlaceResult = google.maps.places.PlaceResult;
 import Distance = google.maps.Distance;
+import {LoadSize} from "../../shipping/model";
 
 export const shippingFeatureKey = 'shipping';
 
+
 export interface ShippingState {
-  placesDistance: number;
+
   data: any;
   placesResults: Array<PlaceResult>;
-  routeDistance:Distance
+  routeDistance: Distance;
+  loadSize: LoadSize;
+  weight: number;
 }
 
 export const initialState: ShippingState = {
-  placesDistance: 5,
+
   data: {},
   placesResults: [{name: ''}, {name: ''}],
-  routeDistance: {value: 0, text:''}
+  routeDistance: {value: 0, text: ''},
+  loadSize: {length: 0, width: 0, height: 0, volume: 0},
+  weight: 0
 };
 
 
@@ -26,7 +32,8 @@ export const _shippingReducer = createReducer<ShippingState>(
   on(ShippingActions.shippinglocations, state => state),
 
   on(ShippingActions.loadShippingSuccess, (state, action): ShippingState => {
-    return {...state,
+    return {
+      ...state,
       data: action.data
     }
   }),
@@ -34,15 +41,22 @@ export const _shippingReducer = createReducer<ShippingState>(
   on(ShippingActions.loadShippingFailure, (state) => state),
 
   on(ShippingActions.updatePlaceByIndex, (state, action): ShippingState => {
-    return {...state,
+    return {
+      ...state,
       placesResults: state.placesResults.map((x, i) => i === action.index ? action.placeResult : x),
     }
   }),
 
   on(ShippingActions.setRouteDistance, (state, action): ShippingState => {
-    return {...state,
-      routeDistance: action.routeDistance
-    }
+    return {...state, routeDistance: action.routeDistance}
+  }),
+
+  on(ShippingActions.setLoadSize, (state, action): ShippingState => {
+    return {...state, loadSize: action.loadSize}
+  }),
+
+  on(ShippingActions.setWeight, (state, action): ShippingState => {
+    return {...state, weight: action.weight}
   }),
 );
 
