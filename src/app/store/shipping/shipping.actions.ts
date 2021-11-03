@@ -30,12 +30,12 @@ export const setRouteDistance = createAction(
 );
 
 export const setLoadSize = createAction(
-  '[Shipping] Set Directions Route',
+  '[Shipping] Set Load Size',
   props<{ loadSize: LoadSize }>()
 );
 
 export const setWeight = createAction(
-  '[Shipping] Set Directions Route',
+  '[Shipping] Set Weight',
   props<{ weight: number }>()
 );
 

@@ -22,8 +22,4 @@ export class ShippingService {
     );
   }
 
- /* getPlaces(): ShippingSettingsPerKilometer {
-
-    return this.http.get(this.apiURL+'shippingSettingsPerKilometer');
-  }*/
 }

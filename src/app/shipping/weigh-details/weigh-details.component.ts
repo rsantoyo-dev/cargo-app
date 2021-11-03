@@ -23,7 +23,7 @@ export class WeighDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.store.dispatch(setWeight({weight:this.weightForm.value}))
+    this.store.dispatch(setWeight({weight:this.weightForm.value.weight}))
   }
 
 }

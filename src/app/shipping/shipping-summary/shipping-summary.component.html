@@ -1,2 +1,13 @@
 <p>shipping-summary works! //TODO: calculate shipping</p>
-{{(routeDistance$ | async)?.text}}
+
+<div>
+  {{(routeDistance$ | async)?.text}}
+</div>
+<div>
+  {{(loadSize$ | async)?.volume}}
+</div>
+
+<div>
+  {{(weight$ | async)}}
+</div>
+
