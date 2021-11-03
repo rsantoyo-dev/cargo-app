@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import PlaceResult = google.maps.places.PlaceResult;
 import Distance = google.maps.Distance;
-import {LoadSize} from "../../shipping/model";
+import {LoadSize, ShippingSettingsPerKilometer} from "../../shipping/model";
 
 //API ACTIONS
 export const shippinglocations = createAction(
@@ -10,7 +10,7 @@ export const shippinglocations = createAction(
 
 export const loadShippingSuccess = createAction(
   '[Shipping] Load Geolocations Success',
-  props<{ data: any }>()
+  props<{ shippingSettingsPerKilometer: ShippingSettingsPerKilometer }>()
 );
 
 export const loadShippingFailure = createAction(

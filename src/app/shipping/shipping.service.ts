@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {ShippingSettingsPerKilometer} from "./model";
+import {Observable, of, throwError} from "rxjs";
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,16 @@ export class ShippingService {
 
   constructor(private http:HttpClient) { }
 
-  getPlaces() {
-    return this.http.get(this.apiURL+'shippingSettingsPerKilometer');
+  getPlaces(): Observable<ShippingSettingsPerKilometer> {
+    return this.http.get<string>
+    (this.apiURL + 'shippingSettingsPerKilometer').pipe(
+      tap(data => JSON.stringify(data)),
+      catchError((error) => of(error))
+    );
   }
+
+ /* getPlaces(): ShippingSettingsPerKilometer {
+
+    return this.http.get(this.apiURL+'shippingSettingsPerKilometer');
+  }*/
 }

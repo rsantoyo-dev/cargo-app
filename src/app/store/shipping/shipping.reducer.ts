@@ -2,14 +2,14 @@ import {createReducer, on} from '@ngrx/store';
 import * as ShippingActions from './shipping.actions';
 import PlaceResult = google.maps.places.PlaceResult;
 import Distance = google.maps.Distance;
-import {LoadSize} from "../../shipping/model";
+import {LoadSize, ShippingSettingsPerKilometer} from "../../shipping/model";
 
 export const shippingFeatureKey = 'shipping';
 
 
 export interface ShippingState {
 
-  data: any;
+  shippingSettingsPerKilometer: ShippingSettingsPerKilometer;
   placesResults: Array<PlaceResult>;
   routeDistance: Distance;
   loadSize: LoadSize;
@@ -17,8 +17,7 @@ export interface ShippingState {
 }
 
 export const initialState: ShippingState = {
-
-  data: {},
+  shippingSettingsPerKilometer: {gasCost: 0, sizeCost: 0, volumeCost: 0},
   placesResults: [{name: ''}, {name: ''}],
   routeDistance: {value: 0, text: ''},
   loadSize: {length: 0, width: 0, height: 0, volume: 0},
@@ -34,7 +33,7 @@ export const _shippingReducer = createReducer<ShippingState>(
   on(ShippingActions.loadShippingSuccess, (state, action): ShippingState => {
     return {
       ...state,
-      data: action.data
+      shippingSettingsPerKilometer: action.shippingSettingsPerKilometer
     }
   }),
 

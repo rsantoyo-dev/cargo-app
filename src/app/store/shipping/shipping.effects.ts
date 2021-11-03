@@ -16,10 +16,8 @@ export class ShippingEffects {
     return this.actions$.pipe(
       ofType(ShippingActions.shippinglocations),
       mergeMap(() =>
-
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.shippingService.getPlaces().pipe(
-          map((data) => ShippingActions.loadShippingSuccess({data})),
+          map((shippingSettingsPerKilometer) => ShippingActions.loadShippingSuccess({shippingSettingsPerKilometer})),
           catchError(error => of(ShippingActions.loadShippingFailure({error})))
         )
       )
