@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {ShippingState} from "../../store/shipping/shipping.reducer";
-import {setWeight, updatePlaceByIndex} from "../../store/shipping/shipping.actions";
+import {setCost, setWeight} from "../../store/shipping/shipping.actions";
 
 @Component({
   selector: 'app-weigh-details',
@@ -24,6 +24,7 @@ export class WeighDetailsComponent implements OnInit {
 
   onSubmit() {
     this.store.dispatch(setWeight({weight:this.weightForm.value.weight}))
+    this.store.dispatch(setCost())
   }
 
 }

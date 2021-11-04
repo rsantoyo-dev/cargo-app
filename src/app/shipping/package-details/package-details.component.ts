@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {setLoadSize, setWeight} from "../../store/shipping/shipping.actions";
+import {setCost, setLoadSize} from "../../store/shipping/shipping.actions";
 import {Store} from "@ngrx/store";
 import {ShippingState} from "../../store/shipping/shipping.reducer";
 import {LoadSize} from "../model";
@@ -31,6 +31,7 @@ export class PackageDetailsComponent implements OnInit {
       volume: this.sizeForm.value.length * this.sizeForm.value.width * this.sizeForm.value.height
     }
     this.store.dispatch(setLoadSize({loadSize}))
+    this.store.dispatch(setCost())
 
   }
 

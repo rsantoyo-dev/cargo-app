@@ -12,6 +12,9 @@ export const getLoadSize = createSelector(selectShippingState, state => (state ?
 
 export const getWeight = createSelector(selectShippingState, state => (state ? state.weight : null));
 
+export const getCost = createSelector(selectShippingState, state => (state ? state.cost : null));
+
+
 
 
 

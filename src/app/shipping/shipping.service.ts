@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ShippingSettingsPerKilometer} from "./model";
-import {Observable, of, throwError} from "rxjs";
+import {Observable, of} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 
 @Injectable({
@@ -21,5 +21,6 @@ export class ShippingService {
       catchError((error) => of(error))
     );
   }
+
 
 }

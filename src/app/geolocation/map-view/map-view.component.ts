@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {ShippingState} from "../../store/shipping/shipping.reducer";
 import Marker = google.maps.Marker;
 import DirectionsRequest = google.maps.DirectionsRequest;
-import {setRouteDistance} from "../../store/shipping/shipping.actions";
+import {setCost, setRouteDistance} from "../../store/shipping/shipping.actions";
 
 
 @Component({
@@ -56,6 +56,7 @@ export class MapViewComponent implements AfterViewInit {
         const routeDistance = (response.routes[0].legs[0].distance)
         if (status == 'OK') {
           this.store.dispatch(setRouteDistance({routeDistance}));
+          this.store.dispatch(setCost())
           this.directionsRenderer.setDirections(response);
         }
       })

@@ -39,3 +39,7 @@ export const setWeight = createAction(
   props<{ weight: number }>()
 );
 
+export const setCost = createAction(
+  '[Shipping] Set Cost'
+);
+

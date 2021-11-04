@@ -14,6 +14,7 @@ export interface ShippingState {
   routeDistance: Distance;
   loadSize: LoadSize;
   weight: number;
+  cost: number;
 }
 
 export const initialState: ShippingState = {
@@ -21,9 +22,9 @@ export const initialState: ShippingState = {
   placesResults: [{name: ''}, {name: ''}],
   routeDistance: {value: 0, text: ''},
   loadSize: {length: 0, width: 0, height: 0, volume: 0},
-  weight: 0
+  weight: 0,
+  cost:0
 };
-
 
 export const _shippingReducer = createReducer<ShippingState>(
   initialState,
@@ -55,9 +56,18 @@ export const _shippingReducer = createReducer<ShippingState>(
   }),
 
   on(ShippingActions.setWeight, (state, action): ShippingState => {
-    return {...state, weight: action.weight}
+    return {...state, weight: action.weight }
+  }),
+
+  on(ShippingActions.setCost, (state): ShippingState => {
+    return {...state, cost: cost(state) }
   }),
 );
+
+const cost=(state:ShippingState ):number=>{
+  const businessRule:number = 0.5*(state.weight)*state.loadSize.volume/10000*state.routeDistance.value/1000
+  return Math.round(businessRule)
+}
 
 export function shippingReducer(state: any, action: any) {
   return _shippingReducer(state, action)

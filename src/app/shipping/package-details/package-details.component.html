@@ -1,14 +1,12 @@
-
-<form [formGroup]="sizeForm"  (ngSubmit)="onSubmit()">
+<form [formGroup]="sizeForm" (ngSubmit)="onSubmit()">
 
   <label for="length">Length: </label>
-  <input id="length" type="number" formControlName="length">
+  <input id="length" type="number" formControlName="length" (change)="onSubmit()">
 
   <label for="width">width: </label>
-  <input id="width" type="number" formControlName="width">
+  <input id="width" type="number" formControlName="width" (change)="onSubmit()">
 
   <label for="height">height: </label>
-  <input id="height" type="number" formControlName="height">
+  <input id="height" type="number" formControlName="height" (change)="onSubmit()">
 
-  <button type="submit" [disabled]="!sizeForm.valid">Submit</button>
 </form>
