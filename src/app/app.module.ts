@@ -13,11 +13,14 @@ import {shippingReducer} from "./store/shipping/shipping.reducer";
 import {ShippingEffects} from "./store/shipping/shipping.effects";
 import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
+import { LayoutComponent } from './shared/layout/layout.component';
+import {FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LayoutComponent
   ],
   imports: [
 
@@ -29,6 +32,7 @@ import {HttpClientModule} from "@angular/common/http";
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     GeolocationModule,
     ShippingModule,
+    FlexModule,
 
   ],
   providers: [],
