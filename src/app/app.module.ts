@@ -14,7 +14,7 @@ import {ShippingEffects} from "./store/shipping/shipping.effects";
 import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
 import { LayoutComponent } from './shared/layout/layout.component';
-import {FlexModule} from "@angular/flex-layout";
+import {ExtendedModule, FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -33,6 +33,7 @@ import {FlexModule} from "@angular/flex-layout";
     GeolocationModule,
     ShippingModule,
     FlexModule,
+    ExtendedModule,
 
   ],
   providers: [],

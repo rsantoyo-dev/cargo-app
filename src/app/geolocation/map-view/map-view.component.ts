@@ -61,8 +61,6 @@ export class MapViewComponent implements AfterViewInit {
         }
       })
     }
-
-
   }
 
   showMapInfo() {

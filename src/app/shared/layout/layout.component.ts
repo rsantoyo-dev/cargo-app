@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ITheme, ThemeService} from "../theme.service";
+import {IStyled, ThemeService} from "../theme.service";
 
 @Component({
   selector: 'app-layout',
@@ -8,9 +8,9 @@ import {ITheme, ThemeService} from "../theme.service";
 })
 export class LayoutComponent implements OnInit {
 
-  theme:ITheme
+  styled:IStyled;
   constructor(private themeService:ThemeService) {
-    this.theme=themeService.getTheme()
+    this.styled=themeService.setStyled();
   }
 
   ngOnInit(): void {
