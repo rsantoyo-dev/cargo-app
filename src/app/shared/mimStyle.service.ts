@@ -1,9 +1,5 @@
 import {Injectable} from '@angular/core';
-import {NgStyle} from "@angular/common";
-import {CssRule} from "@angular/compiler/src/shadow_css";
-import {CssSelector} from "@angular/compiler";
-import {ClassDeclaration} from "@angular/compiler-cli/src/ngtsc/reflection";
-import {StyleBuilder} from "@angular/flex-layout";
+
 import {MSO} from "./mimStyleOptions";
 
 
