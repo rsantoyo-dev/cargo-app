@@ -2,7 +2,7 @@
 <div fxLayout.gt-sm="row" fxLayout="column">
   <div fxFlex="33" fxLayout="column" fxLayoutAlign="space-between center">
 
-    <div [ngStyle]="styled.bgColor('red')" >
+    <div [ngStyle]="ms.set([MSO.p1, MSO.bgPrimary])"  >
       CARGO-APP
     </div>
     <app-get-address ></app-get-address>

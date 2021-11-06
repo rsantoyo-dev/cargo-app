@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IStyled, ThemeService} from "../theme.service";
+import {MimStyleService} from "../mimStyle.service";
+import {MSO} from "../mimStyleOptions";
 
 @Component({
   selector: 'app-layout',
@@ -8,9 +9,12 @@ import {IStyled, ThemeService} from "../theme.service";
 })
 export class LayoutComponent implements OnInit {
 
-  styled:IStyled;
-  constructor(private themeService:ThemeService) {
-    this.styled=themeService.setStyled();
+  ms:MimStyleService
+  MSO = MSO
+
+  constructor(private mimStyleService:MimStyleService) {
+    this.ms=mimStyleService
+
   }
 
   ngOnInit(): void {
