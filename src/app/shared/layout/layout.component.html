@@ -1,11 +1,16 @@
-
 <div fxLayout.gt-sm="row" fxLayout="column">
   <div fxFlex="33" fxLayout="column" fxLayoutAlign="space-between center">
 
-    <div [ngStyle]="ms.set([MSO.p1, MSO.bgPrimary])"  >
+    <div fxLayoutAlign="center"
+         [ngStyle]="{backgroundColor:theme.palette.primary,
+         width:'100%',
+         padding:theme.spacing._1}">
       CARGO-APP
     </div>
-    <app-get-address ></app-get-address>
+
+
+
+    <app-get-address></app-get-address>
     <app-package-details></app-package-details>
     <app-weigh-details></app-weigh-details>
     <app-shipping-summary></app-shipping-summary>

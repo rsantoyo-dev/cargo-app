@@ -7,20 +7,21 @@ import {StyleBuilder} from "@angular/flex-layout";
 import {MSO} from "./mimStyleOptions";
 
 
-export interface IThemeSettings {
+
+export interface ITheme {
   spacing: {
-    p1: string,
-    p2: string,
-    p3: string,
-    p4: string,
-    p5: string,
+    _1: string,
+    _2: string,
+    _3: string,
+
   };
   typography: {
     h6: string,
     body: string
   };
   palette: {
-    primary: string
+    primary: string,
+    secondary:string
   }
 }
 
@@ -32,21 +33,22 @@ export class MimStyleService {
   constructor() {
   }
 
-  themeSettings(): IThemeSettings {
+  themeSettings(): ITheme {
     return {
       spacing: {
-        p1: '1rem',
-        p2: '2rem',
-        p3: '3rem',
-        p4: '4rem',
-        p5: '5rem'
+        _1: '1rem',
+        _2: '2rem',
+        _3: '3rem',
+
+
       },
       typography: {
         h6: 'font-size:14, font-weight:400',
         body: 'font-size:12'
       },
       palette: {
-        primary: 'red'
+        primary: 'red',
+        secondary: 'blue',
       }
     }
 
@@ -58,11 +60,23 @@ export class MimStyleService {
     shortStyles.forEach(style => {
       switch (style) {
         case MSO.p1: {
-          styles = {...styles, padding: '10px'}
+          styles = {...styles, padding: this.themeSettings().spacing._1}
+          break
+        }
+        case MSO.p2: {
+          styles = {...styles, padding: this.themeSettings().spacing._2}
           break
         }
         case MSO.bgPrimary: {
-          styles = {...styles, backgroundColor: 'red'}
+          styles = {...styles, backgroundColor: this.themeSettings().palette.primary}
+          break
+        }
+        case MSO.bgSecondary: {
+          styles = {...styles, backgroundColor: this.themeSettings().palette.secondary}
+          break
+        }
+        case MSO.w100: {
+          styles = {...styles, width: '100%'}
           break
         }
       }

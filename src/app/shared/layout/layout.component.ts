@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MimStyleService} from "../mimStyle.service";
+import {ITheme, MimStyleService} from "../mimStyle.service";
 import {MSO} from "../mimStyleOptions";
+
 
 @Component({
   selector: 'app-layout',
@@ -9,11 +10,11 @@ import {MSO} from "../mimStyleOptions";
 })
 export class LayoutComponent implements OnInit {
 
-  ms:MimStyleService
+  theme:ITheme
   MSO = MSO
 
   constructor(private mimStyleService:MimStyleService) {
-    this.ms=mimStyleService
+    this.theme=mimStyleService.themeSettings()
 
   }
 
