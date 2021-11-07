@@ -2,12 +2,12 @@ import {Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {ITheme, MimStyleService} from "../mimStyle.service";
 
 @Component({
-  selector: 'mim-box',
-  templateUrl: './box.component.html',
+  selector: 'sDiv',
+  templateUrl: './superDiv.component.html',
   styleUrls: ['./box.component.scss']
 })
 
-export class BoxComponent implements OnInit {
+export class SuperDivComponent implements OnInit {
 
   @Input() p?: number;
   @Input() color?: string;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ITheme, MimStyleService} from "../mimStyle.service";
+import {ITheme, MimStyleService} from "../../styling/mimStyle.service";
 
 
 @Component({
