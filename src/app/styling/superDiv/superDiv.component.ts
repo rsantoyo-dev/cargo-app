@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {ITheme, MimStyleService} from "../mimStyle.service";
 
+
 @Component({
   selector: 'sDiv',
   templateUrl: './superDiv.component.html',
@@ -15,19 +16,19 @@ export class SuperDivComponent implements OnInit {
   @Input() width?: number;
   @Input() dFlex?: boolean = true;
   @Input() justifyContent?: string;
-
+  @Input() flexDirection?: string;
 
   theme:ITheme;
 
-  boxEl: HTMLElement
+  boxEl: HTMLElement;
 
   constructor(private mimStyleService:MimStyleService, private vcr:ViewContainerRef) {
-    this.theme=mimStyleService.themeSettings();
-    this.boxEl = vcr.element.nativeElement;
+  this.theme=mimStyleService.themeSettings();
+  this.boxEl = vcr.element.nativeElement;
   }
 
   ngOnInit(): void {
-   this.applyStylesToElement(this.boxEl)
+   this.applyStylesToElement(this.boxEl);
   }
 
   applyStylesToElement(element:any):void{
@@ -37,6 +38,7 @@ export class SuperDivComponent implements OnInit {
     element.style.width =  this.width ? this.width+'%' : ''
     element.style.display =  this.dFlex ? 'flex' : ''
     element.style.justifyContent =  this.justifyContent ? this.justifyContent : ''
+    element.style.flexDirection =  this.flexDirection ? this.flexDirection : ''
   }
 
 }
