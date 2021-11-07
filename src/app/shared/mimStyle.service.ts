@@ -8,8 +8,18 @@ export interface ITheme {
     body: string
   };
   palette: {
-    primary: string,
-    secondary:string,
+    primary: {
+      main: string,
+      light?: string,
+      dark?: string,
+      contrastText: string,
+    },
+    secondary: {
+      main: string,
+      light?: string,
+      dark?: string,
+      contrastText?: string,
+    },
     error:string
   }
 }
@@ -30,8 +40,15 @@ export class MimStyleService {
         body: 'font-size:12'
       },
       palette: {
-        primary: 'red',
-        secondary: 'blue',
+        primary: {
+          main: '#30a5af',
+          light: '#49bab7',
+          dark: '#2eb6dc',
+          contrastText: '#f9fff7',
+        },
+        secondary: {
+          main: '#2eb6dc',
+        },
         error: 'orange'
       }
     }

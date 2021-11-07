@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {ITheme, MimStyleService} from "../mimStyle.service";
 
 @Component({
@@ -10,25 +10,33 @@ import {ITheme, MimStyleService} from "../mimStyle.service";
 export class BoxComponent implements OnInit {
 
   @Input() p?: number;
+  @Input() color?: string;
   @Input() bgColor?: string;
   @Input() width?: number;
+  @Input() dFlex?: boolean = true;
+  @Input() justifyContent?: string;
 
-  style:{};
 
   theme:ITheme;
 
-  constructor(private mimStyleService:MimStyleService, public templateRef: TemplateRef<unknown>) {
+  boxEl: HTMLElement
+
+  constructor(private mimStyleService:MimStyleService, private vcr:ViewContainerRef) {
     this.theme=mimStyleService.themeSettings();
+    this.boxEl = vcr.element.nativeElement;
   }
 
-
   ngOnInit(): void {
+   this.applyStylesToElement(this.boxEl)
+  }
 
-      this.style = {...this.style,
-        padding: this.p && this.theme.spacing(this.p),
-        backgroundColor: this.bgColor && this.bgColor,
-        width: this.width && this.width+'%'
-      };
+  applyStylesToElement(element:any):void{
+    element.style.padding =  this.p ? this.theme.spacing(this.p) : '';
+    element.style.color =  this.color ? this.color : ''
+    element.style.backgroundColor =  this.bgColor ? this.bgColor : ''
+    element.style.width =  this.width ? this.width+'%' : ''
+    element.style.display =  this.dFlex ? 'flex' : ''
+    element.style.justifyContent =  this.justifyContent ? this.justifyContent : ''
   }
 
 }
