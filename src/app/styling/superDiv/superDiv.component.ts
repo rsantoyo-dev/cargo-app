@@ -18,15 +18,13 @@ export interface IBreakingStyle {
 
 export class SuperDivComponent implements OnInit {
 
-    @Input() p?: number;
-    @Input() color?: string;
-    @Input() bgColor?: string;
-    @Input() width?: IBreakingStyle | string;
     @Input() dFlex?: boolean = true;
+    @Input() p?: IBreakingStyle | string;
+    @Input() color?: IBreakingStyle | string;
+    @Input() bgColor?: IBreakingStyle | string;
+    @Input() width?: IBreakingStyle | string;
     @Input() justifyContent?: IBreakingStyle | string;
-
     @Input() flexDirection?: IBreakingStyle | string;
-
 
     theme: ITheme;
 
@@ -36,7 +34,6 @@ export class SuperDivComponent implements OnInit {
 
     @HostListener('window:resize', ['$event'])
     onWindowResize() {
-        console.log('win ' + window.innerWidth)
         this.getScreenWidth = window.innerWidth;
         this.applyStylesToElement(this.boxEl);
     }
@@ -48,17 +45,16 @@ export class SuperDivComponent implements OnInit {
 
     ngOnInit(): void {
         this.onWindowResize();
-
     }
 
-    applyStylesToElement(element: any): void {
-        element.style.display = this.dFlex ? 'flex' : ''
-        element.style.padding = this.p ? this.theme.spacing(this.p) : '';
-        element.style.color = this.color && this.applyStyle(this.color);
-        element.style.backgroundColor = this.bgColor && this.applyStyle(this.bgColor);
-        element.style.width = this.width  && this.applyStyle(this.width);
-        element.style.justifyContent = this.justifyContent && this.applyStyle(this.justifyContent);
-        element.style.flexDirection = this.flexDirection && this.applyStyle(this.flexDirection, 'row')
+    applyStylesToElement(el: HTMLElement): void {
+        el.style.display = this.dFlex ? 'flex' : '';
+        el.style.padding = this.p ? this.applyStyle(this.p) : '';
+        el.style.color = this.color ? this.applyStyle(this.color) : '';
+        el.style.backgroundColor = this.bgColor ? this.applyStyle(this.bgColor) : '';
+        el.style.width = this.width ? this.applyStyle(this.width) : '';
+        el.style.justifyContent = this.justifyContent ? this.applyStyle(this.justifyContent) : '';
+        el.style.flexDirection = this.flexDirection ? this.applyStyle(this.flexDirection, 'row') : '';
     }
 
     applyStyle(styleValue: IBreakingStyle | string, defaultValue: string = ''): string {
@@ -73,20 +69,15 @@ export class SuperDivComponent implements OnInit {
             case 'object':
                 if (styleValue.xl && this.getScreenWidth > this.theme.breakpoints.xl) {
                     style = styleValue.xl;
-                }
-                else if (styleValue.lg && this.getScreenWidth > this.theme.breakpoints.lg) {
+                } else if (styleValue.lg && this.getScreenWidth > this.theme.breakpoints.lg) {
                     style = styleValue.lg;
-                }
-                else if (styleValue.md && this.getScreenWidth > this.theme.breakpoints.md) {
+                } else if (styleValue.md && this.getScreenWidth > this.theme.breakpoints.md) {
                     style = styleValue.md;
-                }
-                else if (styleValue.sm && this.getScreenWidth > this.theme.breakpoints.sm) {
+                } else if (styleValue.sm && this.getScreenWidth > this.theme.breakpoints.sm) {
                     style = styleValue.sm;
-                }
-                else if (styleValue.xs && this.getScreenWidth > this.theme.breakpoints.xs) {
+                } else if (styleValue.xs && this.getScreenWidth > this.theme.breakpoints.xs) {
                     style = styleValue.xs;
-                }
-                else {
+                } else {
                     style = defaultValue ? defaultValue : '';
                 }
                 break;
