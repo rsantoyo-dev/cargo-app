@@ -1,10 +1,15 @@
-<sDiv fxLayout.gt-sm="row" fxLayout="column">
+<sDiv [dFlex] [flexDirection]="{xs:'column', md:'row'}">
 
-  <sDiv [fxFlex] [justifyContent]="'center'" [flexDirection]="'column'">
-    <sDiv [dFlex] [justifyContent]="'center'" [p]=5 [bgColor]="theme.palette.primary.main" [width]=100>
-      <sDiv  [p]=2 [color]="theme.palette.primary.contrastText">MIM CARGO APP</sDiv>
+  <sDiv [dFlex]
+        [flexDirection]="'column'"
+        [width]="{xs:'100%', md:'35%'}">
+    <sDiv [dFlex]
+          [justifyContent]="'center'"
+          [p]=7
+          [bgColor]="theme.palette.primary.main"
+          [color]="theme.palette.primary.contrastText">
+      MIM CARGO APP
     </sDiv>
-
 
 
     <app-get-address></app-get-address>

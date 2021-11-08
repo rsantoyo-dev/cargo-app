@@ -1,8 +1,17 @@
 import {Injectable} from '@angular/core';
 
+export interface IBreakpoints {
+  xs: number | string,
+  sm: number | string,
+  md: number | string,
+  lg: number | string,
+  xl: number | string,
+}
+
 export interface ITheme {
 
-  spacing: (val:number)=>string;
+  breakpoints: IBreakpoints,
+  spacing: (val: number) => string;
   typography: {
     h6: string,
     body: string
@@ -12,7 +21,7 @@ export interface ITheme {
       main: string,
       light?: string,
       dark?: string,
-      contrastText: string,
+      contrastText?: string,
     },
     secondary: {
       main: string,
@@ -20,7 +29,7 @@ export interface ITheme {
       dark?: string,
       contrastText?: string,
     },
-    error:string
+    error: string
   }
 }
 
@@ -34,6 +43,7 @@ export class MimStyleService {
 
   themeSettings(): ITheme {
     return {
+      breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,
       typography: {
         h6: 'font-size:14, font-weight:400',
