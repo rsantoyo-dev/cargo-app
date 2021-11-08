@@ -18,7 +18,7 @@ export interface IBreakingStyle {
 
 export class SuperDivComponent implements OnInit {
 
-    @Input() dFlex?: boolean = true;
+    @Input() display?: IBreakingStyle | string;
     @Input() p?: IBreakingStyle | string;
     @Input() color?: IBreakingStyle | string;
     @Input() bgColor?: IBreakingStyle | string;
@@ -48,40 +48,34 @@ export class SuperDivComponent implements OnInit {
     }
 
     applyStylesToElement(el: HTMLElement): void {
-        el.style.display = this.dFlex ? 'flex' : '';
-        el.style.padding = this.p ? this.applyStyle(this.p) : '';
-        el.style.color = this.color ? this.applyStyle(this.color) : '';
+
         el.style.backgroundColor = this.bgColor ? this.applyStyle(this.bgColor) : '';
+        el.style.color = this.color ? this.applyStyle(this.color) : '';
+        el.style.padding = this.p ? this.applyStyle(this.p) : '';
         el.style.width = this.width ? this.applyStyle(this.width) : '';
-        el.style.justifyContent = this.justifyContent ? this.applyStyle(this.justifyContent) : '';
+        //flex
+        el.style.display = this.display ? this.applyStyle(this.display) : '';
         el.style.flexDirection = this.flexDirection ? this.applyStyle(this.flexDirection, 'row') : '';
+        el.style.justifyContent = this.justifyContent ? this.applyStyle(this.justifyContent) : '';
+
     }
 
     applyStyle(styleValue: IBreakingStyle | string, defaultValue: string = ''): string {
-        let style: string = "";
+        let style: string | undefined = "";
         switch (typeof styleValue) {
             case 'undefined':
                 return style;
-
             case 'string':
                 return styleValue ? styleValue : defaultValue;
-
             case 'object':
-                if (styleValue.xl && this.getScreenWidth > this.theme.breakpoints.xl) {
-                    style = styleValue.xl;
-                } else if (styleValue.lg && this.getScreenWidth > this.theme.breakpoints.lg) {
-                    style = styleValue.lg;
-                } else if (styleValue.md && this.getScreenWidth > this.theme.breakpoints.md) {
-                    style = styleValue.md;
-                } else if (styleValue.sm && this.getScreenWidth > this.theme.breakpoints.sm) {
-                    style = styleValue.sm;
-                } else if (styleValue.xs && this.getScreenWidth > this.theme.breakpoints.xs) {
-                    style = styleValue.xs;
-                } else {
-                    style = defaultValue ? defaultValue : '';
-                }
-                break;
+                Object.keys(styleValue)?.forEach(key => {
+                    if ((key === 'xs' || key === 'sm' || key === 'md' || key === 'lg' || key === 'xl')
+                        && (styleValue[key] && this.getScreenWidth > this.theme.breakpoints[key])) {
+                        style = styleValue[key];
+                    }
+                })
 
+                break;
         }
         return style
     }
