@@ -1,6 +1,6 @@
 import {Component, HostListener, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {ITheme, JssStyleService} from "../jssStyle.service";
-import {IBreakingStyle, JssStyle} from "../model";
+import {JssStyleService} from "../jssStyle.service";
+import {IBreakingStyle, ITheme, JssStyle} from "../model";
 
 @Component({
     selector: 'sDiv',
@@ -23,8 +23,8 @@ export class SuperDivComponent implements OnInit {
         this.applyStylesToElement(this.superDivElement);
     }
 
-    constructor(private mimStyleService: JssStyleService, private vcr: ViewContainerRef) {
-        this.theme = mimStyleService.themeSettings();
+    constructor(private jssStyleService: JssStyleService, private vcr: ViewContainerRef) {
+        this.theme = jssStyleService.theme();
         this.superDivElement = vcr.element.nativeElement;
     }
 

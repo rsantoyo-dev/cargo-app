@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ITheme, JssStyleService} from "../../styling/jssStyle.service";
+import {JssStyleService} from "../../styling/jssStyle.service";
+import {ITheme} from "../../styling/model";
 
 @Component({
   selector: 'app-layout',
@@ -11,9 +12,8 @@ export class LayoutComponent implements OnInit {
 
   theme:ITheme;
 
-
-  constructor(private mimStyleService:JssStyleService) {
-    this.theme=mimStyleService.themeSettings();
+  constructor(private jssStyleService:JssStyleService) {
+    this.theme=jssStyleService.theme();
   }
 
   ngOnInit(): void {

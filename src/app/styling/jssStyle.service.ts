@@ -1,37 +1,5 @@
 import {Injectable} from '@angular/core';
-
-export interface IBreakpoints {
-  xs: number | string,
-  sm: number | string,
-  md: number | string,
-  lg: number | string,
-  xl: number | string,
-}
-
-export interface ITheme {
-
-  breakpoints: IBreakpoints,
-  spacing: (val: number) => string;
-  typography: {
-    h6: string,
-    body: string
-  };
-  palette: {
-    primary: {
-      main: string,
-      light?: string,
-      dark?: string,
-      contrastText?: string,
-    },
-    secondary: {
-      main: string,
-      light?: string,
-      dark?: string,
-      contrastText?: string,
-    },
-    error: string
-  }
-}
+import {ITheme} from "./model";
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +9,7 @@ export class JssStyleService {
   constructor() {
   }
 
-  themeSettings(): ITheme {
+  theme(): ITheme {
     return {
       breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,

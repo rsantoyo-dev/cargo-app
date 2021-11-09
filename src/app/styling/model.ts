@@ -1,3 +1,35 @@
+export interface IBreakpoints {
+  xs: number | string,
+  sm: number | string,
+  md: number | string,
+  lg: number | string,
+  xl: number | string,
+}
+
+export interface ITheme {
+  breakpoints: IBreakpoints,
+  spacing: (val: number) => string;
+  typography: {
+    h6: string,
+    body: string
+  };
+  palette: {
+    primary: {
+      main: string,
+      light?: string,
+      dark?: string,
+      contrastText?: string,
+    },
+    secondary: {
+      main: string,
+      light?: string,
+      dark?: string,
+      contrastText?: string,
+    },
+    error: string
+  }
+}
+
 export interface IBreakingStyle {
   xs?: string,
   sm?: string,
