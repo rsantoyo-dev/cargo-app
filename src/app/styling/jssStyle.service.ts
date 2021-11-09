@@ -36,7 +36,7 @@ export interface ITheme {
 @Injectable({
   providedIn: 'root'
 })
-export class MimStyleService {
+export class JssStyleService {
 
   constructor() {
   }
