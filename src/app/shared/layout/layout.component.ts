@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {ITheme, MimStyleService} from "../mimStyle.service";
-import {MSO} from "../mimStyleOptions";
-
+import {ITheme, JssStyleService} from "../../styling/jssStyle.service";
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
+
 export class LayoutComponent implements OnInit {
 
-  theme:ITheme
-  MSO = MSO
+  theme:ITheme;
 
-  constructor(private mimStyleService:MimStyleService) {
-    this.theme=mimStyleService.themeSettings()
 
+  constructor(private mimStyleService:JssStyleService) {
+    this.theme=mimStyleService.themeSettings();
   }
 
   ngOnInit(): void {

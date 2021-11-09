@@ -15,12 +15,14 @@ import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
 import { LayoutComponent } from './shared/layout/layout.component';
 import {ExtendedModule, FlexModule} from "@angular/flex-layout";
+import { SuperDivComponent } from './styling/superDiv/superDiv.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
+    SuperDivComponent
   ],
   imports: [
 

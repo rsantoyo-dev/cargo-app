@@ -11,8 +11,6 @@ export class PlaceAutoCompleteComponent implements AfterViewInit {
   @ViewChild('input')
   input: ElementRef<HTMLInputElement>;
 
-
-
   @Output()
   placeChanged: EventEmitter<PlaceResult> = new EventEmitter<PlaceResult>();
 
