@@ -6,22 +6,22 @@ import {ITheme} from "../../styling/model";
   selector: 'app-layout',
   template: `
     <div [sJss]="{
-  display:'flex',
-  flexDirection:{xs:'column', md:'row'}
-  }">
-      <div [sJss]="
-    {display:'flex',
-    flexDirection:'column',
-    width:{xs:'100%', md:'35%'}}">
-        <div [sJss]="{display:'flex',
-      justifyContent:'center',
-      padding:{xs:theme.spacing(2), md:theme.spacing(5)},
-      backgroundColor:theme.palette.primary.main,
-      color:theme.palette.primary.contrastText
+      display:'flex',
+      flexDirection:{xs:'column', md:'row'}
       }">
-
-      <span [sJss]="{padding:theme.spacing(1),
-        backgroundColor:{xs:theme.palette.primary.light, md:theme.palette.primary.dark}}">Hello world</span>
+      <div [sJss]="
+        {display:'flex',
+        flexDirection:'column',
+        width:{xs:'100%', md:'35%'}}">
+        <div [sJss]="{display:'flex',
+          justifyContent:'center',
+          padding:{xs:theme.spacing(2), md:theme.spacing(5)},
+          backgroundColor:theme.palette.primary.main,
+          color:theme.palette.primary.contrastText
+          }">
+          <span [sJss]="{padding:theme.spacing(1),
+            backgroundColor:{xs:theme.palette.primary.light, md:theme.palette.primary.dark}}">Hello world
+          </span>
         </div>
         <app-get-address></app-get-address>
         <app-package-details></app-package-details>
