@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { LayoutComponent } from './shared/layout/layout.component';
 import {ExtendedModule, FlexModule} from "@angular/flex-layout";
 import { SuperDivComponent } from './styling/super-div/super-div.component';
+import {StylingModule} from "./styling/styling.module";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { SuperDivComponent } from './styling/super-div/super-div.component';
     ShippingModule,
     FlexModule,
     ExtendedModule,
+    StylingModule,
 
   ],
   providers: [],

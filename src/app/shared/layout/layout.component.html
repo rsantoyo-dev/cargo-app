@@ -1,29 +1,30 @@
-<sDiv [jssStyle]="{
+<div [sJss]="{
   display:'flex',
   flexDirection:{xs:'column', md:'row'}
   }">
-  <sDiv [jssStyle]="
+  <div [sJss]="
     {display:'flex',
     flexDirection:'column',
     width:{xs:'100%', md:'35%'}}">
-    <sDiv [jssStyle]="{display:'flex',
+    <div [sJss]="{display:'flex',
       justifyContent:'center',
       padding:{xs:theme.spacing(2), md:theme.spacing(5)},
       backgroundColor:theme.palette.primary.main,
       color:theme.palette.primary.contrastText
       }" >
       MY CARGO APP
+    </div>
 
-    </sDiv>
+    <a [sJss]="{padding:'30px', backgroundColor:theme.palette.primary.light}">saddsadadsa</a>
 
 
     <app-get-address></app-get-address>
     <app-package-details></app-package-details>
     <app-weigh-details></app-weigh-details>
     <app-shipping-summary></app-shipping-summary>
-  </sDiv>
+  </div>
   <app-map-view fxFlex></app-map-view>
-</sDiv>
+</div>
 
 
 

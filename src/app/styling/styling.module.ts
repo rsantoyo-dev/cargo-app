@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DivHandlerComponent } from './div-handler/div-handler.component';
+import { SuperJssDirective } from './super-jss.directive';
 
 
 
 @NgModule({
   declarations: [
-    DivHandlerComponent
+    SuperJssDirective
+  ],
+  exports: [
+    SuperJssDirective
   ],
   imports: [
     CommonModule
