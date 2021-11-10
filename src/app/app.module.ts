@@ -15,7 +15,7 @@ import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
 import { LayoutComponent } from './shared/layout/layout.component';
 import {ExtendedModule, FlexModule} from "@angular/flex-layout";
-import { SuperDivComponent } from './styling/superDiv/superDiv.component';
+import { SuperDivComponent } from './styling/super-div/super-div.component';
 
 
 @NgModule({
