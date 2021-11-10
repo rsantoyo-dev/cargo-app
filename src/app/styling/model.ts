@@ -37,7 +37,7 @@ export interface IBreakingStyle {
   lg?: string,
   xl?: string,
 }
-export interface JssStyle {
+export interface SJss {
   alignContent?: IBreakingStyle | string;
   alignItems?: IBreakingStyle | string;
   alignSelf?: IBreakingStyle | string;

@@ -1,6 +1,5 @@
-import {Component, HostListener, Input, ViewContainerRef} from '@angular/core';
-import {JssStyleService} from "../jssStyle.service";
-import {ITheme, JssStyle} from "../model";
+import {Component, Input, ViewContainerRef} from '@angular/core';
+import {ITheme,  SJss} from "../model";
 
 @Component({
   selector: 'sDiv',
@@ -8,24 +7,16 @@ import {ITheme, JssStyle} from "../model";
 })
 
 export class SuperDivComponent  {
-  @Input() jssStyle: JssStyle;
+  @Input() sJss: SJss;
 
   theme: ITheme;
   superDivElement: HTMLElement;
 
-  getScreenWidth: number;
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    this.jssStyleService.applyStylesToElement(this.superDivElement, this.jssStyle, window.innerWidth, this.theme);
-  }
-  constructor(private jssStyleService: JssStyleService, private vcr: ViewContainerRef) {
-    this.theme = jssStyleService.theme();
+
+  constructor(private vcr: ViewContainerRef) {
     this.superDivElement = vcr.element.nativeElement
   }
 
-  ngOnInit(): void {
-    this.onWindowResize();
-  }
+
 
 }

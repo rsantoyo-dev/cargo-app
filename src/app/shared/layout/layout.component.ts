@@ -14,6 +14,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(private jssStyleService:JssStyleService) {
     this.theme=jssStyleService.theme();
+
   }
 
   ngOnInit(): void {
