@@ -16,15 +16,15 @@ export class JssStyleService {
       breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,
       typography: {
-        H1: {fontSize: {xs:'3em', sm:'5em'}, fontWeight:'bold'},
-        H2: {fontSize:'2.2em', fontWeight:'bolder'},
-        H3: {fontSize:'1.8em', fontWeight:'bolder'},
-        H4: {fontSize:'1.5em', fontWeight:'bolder'},
-        H5: {fontSize:'1.4em', fontWeight:'bolder'},
-        H6: {fontSize:'1.2em', fontWeight:'bolder'},
-        SPAN: {fontSize:'1em', fontWeight:'normal'},
-        BODY1: {fontSize:'0.8em', fontWeight:'normal'},
-
+        default: {fontFamily: '"Roboto","Helvetica"', fontSize: '1.2em'},
+        H1: {fontSize: {xs: '3em', md: '3.5em'}, fontWeight: 'bold'},
+        H2: {fontSize: {xs: '2.5em', md: '3em'}, fontWeight: 'bolder'},
+        H3: {fontSize: {xs: '2.0em', md: '2.5em'}, fontWeight: 'bolder'},
+        H4: {fontSize: {xs: '1.8em', md: '2em'}, fontWeight: 'bolder'},
+        H5: {fontSize: {xs: '1.5em', md: '1.8em'}, fontWeight: 'bolder'},
+        H6: {fontSize: {xs: '1em', md: '1.2em'}, fontWeight: 'bolder'},
+        BODY1: {fontSize: '1em', fontWeight: 'normal'},
+        SPAN: {fontSize: '0.8em', fontWeight: 'normal'},
       },
       palette: {
         primary: {

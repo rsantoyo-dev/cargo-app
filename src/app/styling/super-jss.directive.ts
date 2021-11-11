@@ -16,8 +16,8 @@ export class SuperJssDirective implements OnInit {
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
-    this.applyStylesToElement(this.superDivElement, this.sJss?this.sJss:{},  this.theme, window.innerWidth);
-    this.applyTypography(this.superDivElement, this.theme, window.innerWidth)
+    this.applyTypography(this.superDivElement, this.theme, window.innerWidth);
+    this.applyStylesToElement(this.superDivElement, this.sJss ? this.sJss : {}, this.theme, window.innerWidth);
   }
 
   constructor(private jssStyleService: JssStyleService, private vcr: ViewContainerRef) {
@@ -30,26 +30,23 @@ export class SuperJssDirective implements OnInit {
     this.onWindowResize();
   }
 
-  applyTypography(el:HTMLElement, theme:ITheme, screenWidth: number=0) {
-    console.log(el.nodeName)
+  applyTypography(el: HTMLElement, theme: ITheme, screenWidth: number = 0) {
     Object.keys(theme.typography)?.forEach(key => {
-      if(key==='H6' || key==='H5' || key==='H4' || key==='H3' || key==='H2' || key==='H1'){
-        this.applyStylesToElement(el, { marginBlockStart:'0', marginBlockEnd:'0'}, this.theme)
-        if(el.nodeName === key){
-          this.applyStylesToElement(el, theme.typography[key], this.theme, screenWidth)
-        }
+      const jss: SJss = {marginBlockStart: '0', marginBlockEnd: '0', ...theme.typography.default}
+      if (el.nodeName === key) {
+        // @ts-ignore
+        this.applyStylesToElement(el, {...jss, ...theme.typography[key]}, theme, screenWidth)
       }
     })
   }
 
-  applyStylesToElement(el: HTMLElement, jssStyle: SJss = {}, theme: ITheme, screenWidth: number=0): void {
+  applyStylesToElement(el: HTMLElement, jssStyle: SJss = {}, theme: ITheme, screenWidth: number = 0): void {
     if (jssStyle) {
       Object.keys(jssStyle)?.forEach(key => {
         // @ts-ignore
         el.style[key] = this.applyStyle(jssStyle[key], screenWidth, theme)
       })
     }
-
   }
 
   applyStyle(styleValue: IBreakingStyle | string | undefined, screenWidth: number, theme: ITheme, defaultValue: string = ''): string {

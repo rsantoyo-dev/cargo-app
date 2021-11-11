@@ -9,7 +9,9 @@ export interface IBreakpoints {
 export interface ITheme {
   breakpoints: IBreakpoints,
   spacing: (val: number) => string;
+
   typography: {
+    default:SJss,
     H6?: SJss,
     H5?: SJss,
     H4?: SJss,
