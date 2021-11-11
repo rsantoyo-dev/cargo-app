@@ -16,7 +16,7 @@ export class JssStyleService {
       breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,
       typography: {
-        H1: {fontSize: '3em', fontWeight:'bold'},
+        H1: {fontSize: {xs:'3em', sm:'5em'}, fontWeight:'bold'},
         H2: {fontSize:'2.2em', fontWeight:'bolder'},
         H3: {fontSize:'1.8em', fontWeight:'bolder'},
         H4: {fontSize:'1.5em', fontWeight:'bolder'},
