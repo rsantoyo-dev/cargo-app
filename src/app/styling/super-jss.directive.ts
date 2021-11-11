@@ -1,15 +1,17 @@
 import {Directive, HostListener, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {JssStyleService} from "./jssStyle.service";
 import {IBreakingStyle, ITheme, SJss} from "./model";
-export enum Ijs{
-  flex='flex'
+
+export enum Ijs {
+  flex = 'flex'
 }
+
 @Directive({
   selector: '[sJss]'
 })
-export class SuperJssDirective implements OnInit{
+export class SuperJssDirective implements OnInit {
 
-  @Input() sJss: SJss;
+  @Input() sJss?: SJss;
 
   theme: ITheme;
   superDivElement: HTMLElement;
@@ -18,19 +20,34 @@ export class SuperJssDirective implements OnInit{
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
-    this.applyStylesToElement(this.superDivElement, this.sJss, window.innerWidth, this.theme);
+    this.applyStylesToElement(this.superDivElement, this.sJss?this.sJss:{},  this.theme, window.innerWidth);
+    this.applyTypography(this.superDivElement, this.theme)
   }
 
   constructor(private jssStyleService: JssStyleService, private vcr: ViewContainerRef) {
     this.theme = jssStyleService.theme();
     this.superDivElement = vcr.element.nativeElement
+    this.applyTypography(this.superDivElement, this.theme)
   }
 
   ngOnInit(): void {
     this.onWindowResize();
   }
 
-  applyStylesToElement(el: HTMLElement, jssStyle:SJss={}, screenWidth: number, theme:ITheme): void {
+  applyTypography(el:HTMLElement, theme:ITheme) {
+    console.log(el.nodeName)
+    Object.keys(theme.typography)?.forEach(key => {
+      if(key==='H6' || key==='H5' || key==='H4' || key==='H3' || key==='H2' || key==='H1'){
+        this.applyStylesToElement(el, { marginBlockStart:'0', marginBlockEnd:'0'}, this.theme)
+        if(el.nodeName === key){
+          this.applyStylesToElement(el, theme.typography[key], this.theme)
+        }
+
+      }
+    })
+  }
+
+  applyStylesToElement(el: HTMLElement, jssStyle: SJss = {}, theme: ITheme, screenWidth: number=0): void {
     if (jssStyle) {
       Object.keys(jssStyle)?.forEach(key => {
         // @ts-ignore
@@ -39,7 +56,7 @@ export class SuperJssDirective implements OnInit{
     }
   }
 
-  applyStyle(styleValue: IBreakingStyle | string | undefined, screenWidth:number, theme:ITheme, defaultValue: string = ''): string {
+  applyStyle(styleValue: IBreakingStyle | string | undefined, screenWidth: number, theme: ITheme, defaultValue: string = ''): string {
     let style: string | undefined = "";
     switch (typeof styleValue) {
       case 'undefined':

@@ -10,8 +10,19 @@ export interface ITheme {
   breakpoints: IBreakpoints,
   spacing: (val: number) => string;
   typography: {
-    h6: string,
-    body: string
+    H6?: SJss,
+    H5?: SJss,
+    H4?: SJss,
+    H3?: SJss,
+    H2?: SJss,
+    H1?: SJss,
+    P?: SJss,
+    SPAN?: SJss,
+    STRONG?: SJss,
+    BODY1?: SJss,
+    BODY2?: SJss,
+    CAPTION?: SJss,
+
   };
   palette: {
     primary: {

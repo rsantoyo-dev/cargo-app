@@ -16,8 +16,15 @@ export class JssStyleService {
       breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,
       typography: {
-        h6: 'font-size:14, font-weight:400',
-        body: 'font-size:12'
+        H1: {fontSize: '3em', fontWeight:'bold'},
+        H2: {fontSize:'2.2em', fontWeight:'bolder'},
+        H3: {fontSize:'1.8em', fontWeight:'bolder'},
+        H4: {fontSize:'1.5em', fontWeight:'bolder'},
+        H5: {fontSize:'1.4em', fontWeight:'bolder'},
+        H6: {fontSize:'1.2em', fontWeight:'bolder'},
+        SPAN: {fontSize:'1em', fontWeight:'normal'},
+        BODY1: {fontSize:'0.8em', fontWeight:'normal'},
+
       },
       palette: {
         primary: {
