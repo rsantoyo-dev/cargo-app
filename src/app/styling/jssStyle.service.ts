@@ -6,12 +6,21 @@ import {ITheme} from "./model";
 })
 export class JssStyleService {
 
+  currentTheme:ITheme
 
   constructor() {
-
+    this.currentTheme= this.defaultTheme()
   }
 
-  theme(): ITheme {
+  setTheme(theme:ITheme){
+    console.log(theme)
+  }
+
+  theme(){
+    return this.currentTheme
+  }
+
+  defaultTheme(): ITheme {
     return {
       breakpoints: {xs: 0, sm: 600, md: 900, lg: 1200, xl: 1320},
       spacing: (factor) => `${0.25 * factor}rem`,
