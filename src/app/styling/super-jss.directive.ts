@@ -1,11 +1,11 @@
-import {Directive, HostListener, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {Directive, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewContainerRef} from '@angular/core';
 import {JssStyleService} from "./jssStyle.service";
 import {IBreakingStyle, ITheme, SJss} from "./model";
 
 @Directive({
   selector: '[sJss]'
 })
-export class SuperJssDirective implements OnInit {
+export class SuperJssDirective implements OnInit, OnChanges {
 
   @Input() sJss?: SJss;
 
@@ -13,21 +13,31 @@ export class SuperJssDirective implements OnInit {
   superDivElement: HTMLElement;
   getScreenWidth: number;
 
+
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    this.applyTypography(this.superDivElement, this.theme, window.innerWidth);
-    this.applyStylesToElement(this.superDivElement, this.sJss ? this.sJss : {}, this.theme, window.innerWidth);
+    this.applyStyles()
   }
 
   constructor(private jssStyleService: JssStyleService, private vcr: ViewContainerRef) {
     this.theme = jssStyleService.theme();
-    this.superDivElement = vcr.element.nativeElement
+    this.superDivElement = vcr.element.nativeElement;
+  }
 
+  ngOnChanges(changes: SimpleChanges){
+    if(changes.sJss){
+      this.applyStyles()
+    }
   }
 
   ngOnInit(): void {
-    this.onWindowResize();
+    this.applyStyles()
+  }
+
+  applyStyles(){
+    this.getScreenWidth = window.innerWidth;
+    this.applyTypography(this.superDivElement, this.theme, window.innerWidth);
+    this.applyStylesToElement(this.superDivElement, this.sJss ? this.sJss : {}, this.theme, window.innerWidth);
   }
 
   applyTypography(el: HTMLElement, theme: ITheme, screenWidth: number = 0) {

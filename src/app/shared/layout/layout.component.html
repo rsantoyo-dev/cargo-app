@@ -1,7 +1,7 @@
 <div [sJss]="{
   display:'flex',
   flexDirection:{xs:'column', md:'row'}
-  }">
+  }" >
   <div [sJss]="
     {display:'flex',
     flexDirection:'column',
@@ -11,14 +11,14 @@
       padding:{xs:theme.spacing(2), md:theme.spacing(5)},
       backgroundColor:theme.palette.primary.main,
       color:theme.palette.primary.contrastText
-      }" >
+      }">
 
       <span [sJss]="{color:theme.palette.primary.contrastText}">
         MY CARGO APP
       </span>
     </div>
     <h5 [sJss]="{padding:{xs:theme.spacing(3), md:'40px'}, backgroundColor:{xs:theme.palette.primary.main, md:theme.palette.primary.light}}">jimmy</h5>
-    <button (click)="clicked()">sd</button>
+    <button (click)="clicked()">Change theme with this button</button>
 
 
     <app-get-address></app-get-address>

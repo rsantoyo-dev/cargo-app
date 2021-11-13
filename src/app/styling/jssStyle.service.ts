@@ -13,7 +13,7 @@ export class JssStyleService {
   }
 
   setTheme(theme:ITheme){
-    console.log(theme)
+   this.currentTheme = theme
   }
 
   theme(){
