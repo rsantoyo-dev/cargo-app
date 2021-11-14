@@ -6,17 +6,17 @@ import {ITheme} from "./model";
 })
 export class JssStyleService {
 
-  currentTheme:ITheme
+  currentTheme: ITheme
 
   constructor() {
-    this.currentTheme= this.defaultTheme()
+    this.currentTheme = this.defaultTheme()
   }
 
-  setTheme(theme:ITheme){
-   this.currentTheme = theme
+  setTheme(theme: ITheme) {
+    this.currentTheme = theme
   }
 
-  theme(){
+  theme() {
     return this.currentTheme
   }
 
@@ -36,17 +36,59 @@ export class JssStyleService {
         SPAN: {fontSize: '0.8em', fontWeight: 'normal'},
       },
       palette: {
+        common: {
+          black: "#030303",
+          white: "#fafafa",
+          gray: {
+            main: '#888888',
+            light: '#aaaaaa',
+            dark: '#555555',
+            contrastText: '#dddddd',
+          }
+        },
         primary: {
-          main: '#30a5af',
-          light: '#49bab7',
-          dark: '#2eb6dc',
+          main: '#147a81',
+          light: '#5aeae7',
+          dark: '#0f5d73',
           contrastText: '#f9fff7',
         },
         secondary: {
-          main: '#2eb6dc',
+          main: '#a724cc',
+          light: '#d54ffa',
+          dark: '#840c9f',
+          contrastText: '#e7d9bf',
         },
-        error: 'orange'
+        error: {
+          main: '#cc1d1d',
+          light: '#e3543d',
+          dark: '#801f13',
+          contrastText: '#e7d9bf',
+        },
+        warning: {
+          main: '#be5419',
+          light: '#f39363',
+          dark: '#b03c08',
+          contrastText: '#e7d9bf',
+        },
+        info: {
+          main: '#0b619f',
+          light: '#3795d9',
+          dark: '#073556',
+          contrastText: '#e7d9bf',
+        },
+        success: {
+          main: '#35850e',
+          light: '#7eee47',
+          dark: '#163807',
+          contrastText: '#e7d9bf',
+        },
+        text: {
+          primary: '#e7e7e7',
+          secondary: '#1a1a1a',
+          disabled: 'rgba(16,16,16,0.39)',
+        },
       }
+
     }
   }
 

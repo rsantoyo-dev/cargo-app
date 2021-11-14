@@ -27,20 +27,31 @@ export interface ITheme {
 
   };
   palette: {
-    primary: {
-      main: string,
-      light?: string,
-      dark?: string,
-      contrastText?: string,
+    common:{
+      black:string,
+      white:string,
+      gray:IColorOption
     },
-    secondary: {
-      main: string,
-      light?: string,
-      dark?: string,
-      contrastText?: string,
-    },
-    error: string
+    primary: IColorOption,
+    secondary: IColorOption,
+    error: IColorOption,
+    warning: IColorOption,
+    info: IColorOption,
+    success:IColorOption,
+    text:{
+      primary:string,
+      secondary:string,
+      disabled:string
+
+    }
   }
+}
+
+export interface IColorOption{
+  main: string,
+  light: string,
+  dark: string,
+  contrastText: string,
 }
 
 export interface IBreakingStyle {
