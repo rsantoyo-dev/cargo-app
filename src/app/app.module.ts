@@ -11,18 +11,21 @@ import {GeolocationModule} from "./geolocation/geolocation.module";
 import {EffectsModule} from "@ngrx/effects";
 import {shippingReducer} from "./store/shipping/shipping.reducer";
 import {ShippingEffects} from "./store/shipping/shipping.effects";
-import {ShippingModule} from "./shipping/shipping.module";
 import {HttpClientModule} from "@angular/common/http";
 import { LayoutComponent } from './shared/layout/layout.component';
-import { SuperDivComponent } from './styling/super-div/super-div.component';
-import {StylingModule} from "./styling/styling.module";
+import {NgxSjssModule} from "ngx-sjss";
+import {ShippingModule} from "./shipping/shipping.module";
+
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    SuperDivComponent
+
   ],
   imports: [
 
@@ -33,8 +36,9 @@ import {StylingModule} from "./styling/styling.module";
     EffectsModule.forRoot([ShippingEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     GeolocationModule,
-    ShippingModule,
-    StylingModule,
+    NgxSjssModule,
+    ShippingModule
+
 
   ],
   providers: [],
